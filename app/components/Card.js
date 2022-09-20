@@ -1,14 +1,14 @@
 import React from 'react'
 import { View, StyleSheet, Text, Image } from 'react-native'
 
-import colors from '../config/colors'
+import defaultStyles from '../config/styles'
 
 const Card = ({title, subTitle, image}) => {
   return (
     <View style={styles.card}>
         <Image style={styles.image} source={image}/>
         <View style={styles.detailsContainer}>
-            <Text style={styles.title}>{title}</Text>
+            <Text style={[styles.title, defaultStyles.text]}>{title}</Text>
             <Text style={styles.subTitle}>{subTitle}</Text>
         </View>
     </View>
@@ -18,7 +18,7 @@ const Card = ({title, subTitle, image}) => {
 const styles = StyleSheet.create({
     card: {
         borderRadius: 15,
-        backgroundColor: colors.white,
+        backgroundColor: defaultStyles.colors.white,
         marginBottom: 20,
         overflow: 'hidden'
     },
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         marginBottom: 7
     },
     subTitle: {
-        color: colors.primary,
+        color: defaultStyles.colors.primary,
         fontWeight: 'bold'
     }
 })

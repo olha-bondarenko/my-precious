@@ -1,20 +1,32 @@
 import { StyleSheet, Text, SafeAreaView, TouchableWithoutFeedback, Image } from 'react-native';
-import { View } from 'react-native';
-import ListingDetails from './app/screens/ListingDetails'
-import WelcomeScreen from './app/screens/WelcomeScreen'
-import AppButton from './app/components/AppButton'
-import ViewImage from './app/screens/ViewImage'
+import { useState } from 'react'
 import 'react-native-gesture-handler';
-import MessagesScreen from './app/screens/MessagesScreen';
+
 import Screen from './app/components/Screen'
-import Icon from './app/components/Icon'
-import ListItem from './app/components/ListItem';
-import AccountScreen from './app/screens/AccountScreen';
-import ListingsScreen from './app/screens/ListingsScreen'
+import AppPicker from './app/components/AppPicker'
+import AppTextInput from './app/components/AppTextInput';
+
+const categories = [
+  { key: 'rings', value: 'Rings' },
+  { key: 'earrings', value: 'Earrings' },
+  { key: 'necklaces', value: 'Necklaces' },
+  { key: 'bracelets', value: 'Bracelets' }
+]
 
 export default function App() {
+  const [category, setCategory] = useState(categories[0]);
+
   return (
-    <ListingsScreen />
+    <Screen>
+      <AppPicker 
+        selectedItem={category}
+        onSelectItem={item => setCategory(item)}
+        items={categories} 
+        icon='apps' 
+        placeholder='Category'
+      />
+      <AppTextInput icon='email' placeholder='Email'/>
+    </Screen>
   );
 }
 
