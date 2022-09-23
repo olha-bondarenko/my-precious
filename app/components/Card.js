@@ -8,7 +8,7 @@ const Card = ({title, subTitle, image}) => {
     <View style={styles.card}>
         <Image style={styles.image} source={image}/>
         <View style={styles.detailsContainer}>
-            <Text style={[styles.title, defaultStyles.text]}>{title}</Text>
+            <Text style={[styles.title, defaultStyles.text]} numberOfLines={1}>{title}</Text>
             <Text style={styles.subTitle}>{subTitle}</Text>
         </View>
     </View>

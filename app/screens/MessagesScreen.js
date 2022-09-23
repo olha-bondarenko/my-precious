@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { FlatList, StyleSheet, View, Platform, StatusBar } from 'react-native'
 import Screen from '../components/Screen'
-import ListItem from '../components/ListItem'
-import ListItemSeparator from '../components/ListItemSeparator'
-import ListItemDeleteAction from '../components/ListItemDeleteAction'
+import ListItem from '../components/listItem/ListItem'
+import ListItemSeparator from '../components/listItem/ListItemSeparator'
+import ListItemDeleteAction from '../components/listItem/ListItemSeparator'
 
 const initMessages = [
     {
@@ -14,7 +14,7 @@ const initMessages = [
     },
     {
         id: 2,
-        title: 'Title test 222',
+        title: 'Title test 222 ',
         description: 'Description Test 2',
         image: require('../assets/avatar.jpg')
     }

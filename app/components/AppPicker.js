@@ -8,18 +8,22 @@ import PickerItem from './PickerItem'
 
 import defaultStyles from '../config/styles'
 
-const AppPicker = ({ icon, items, placeholder, onSelectItem, selectedItem }) => {
+const AppPicker = ({ icon, items, numberOfColumns = 1, PickerItemComponent = PickerItem, placeholder, onSelectItem, selectedItem, width='100%' }) => {
    const [modalVisible, setModalVisible] = useState(false);
   return (
       <>
         <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
-            <View style={styles.container}>
+            <View style={[styles.container, {width}]}>
                 {icon && <MaterialCommunityIcons 
                     name={icon} 
                     size={20}
                     color={defaultStyles.colors.grey}
                     style={styles.icon}/>}
-                <Text style={styles.text}>{selectedItem ? selectedItem.value : placeholder}</Text>
+                { selectedItem ? 
+                    <Text style={[defaultStyles.text, styles.text]}>{selectedItem.value}</Text> 
+                    :
+                    <Text style={[defaultStyles.text, styles.text]}>{placeholder}</Text>
+                }
                 <MaterialCommunityIcons 
                     name='chevron-down'
                     size={20}
@@ -31,9 +35,11 @@ const AppPicker = ({ icon, items, placeholder, onSelectItem, selectedItem }) => 
                 <Button title='Close' onPress={() => setModalVisible(false)}></Button>
                 <FlatList 
                     data={items}
+                    numColumns={numberOfColumns}
                     keyExtractor={(item) => item.value.toString()}
                     renderItem={({ item }) => 
-                    <PickerItem 
+                    <PickerItemComponent 
+                    item={item}
                     label={item.value}
                     onPress={() => {
                         setModalVisible(false);
@@ -53,7 +59,6 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        width: '100%',
         padding: 15,
         marginVertical: 10
     },
